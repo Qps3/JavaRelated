@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Removal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            padding: 20px;
+            background-color: #F2F2F2;
+            color: #444;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Align items at the top */
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        .form-section {
+            flex: 1;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #FFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-section h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #007BFF;
+        }
+        .form-section button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #80C3FF;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+        }
+        .form-section button:hover {
+            background-color: #4080FF;
+        }
+        .form-section select,
+        .form-section textarea,
+        .form-section input[type="file"],
+        .form-section input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+        }
+        .divider {
+            width: 1px;
+            background-color: #ddd;
+            margin: 0 20px;
+            align-self: stretch;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #80C3FF;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .home-button:hover {
+            background-color: #4080FF;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function previewFiles(event) {
+                var files = event.target.files;
+                var filesDiv = document.getElementById(event.target.id + 'Preview');
+                filesDiv.innerHTML = '';
+
+                var select = document.createElement('select');
+                var option = document.createElement('option');
+                option.textContent = 'Select a file';
+                select.appendChild(option);
+
+                for (var i = 0; i < files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = (function(file) {
+                        return function(e) {
+                            var option = document.createElement('option');
+                            option.textContent = file.name;
+                            option.value = e.target.result;
+                            select.appendChild(option);
+                        };
+                    })(files[i]);
+                    reader.readAsText(files[i]);
+                }
+
+                filesDiv.appendChild(select);
+
+                select.addEventListener('change', function() {
+                    var textarea = filesDiv.querySelector('textarea');
+                    if (textarea) {
+                        filesDiv.removeChild(textarea);
+                    }
+
+                    if (select.value) {
+                        textarea = document.createElement('textarea');
+                        textarea.textContent = select.value;
+                        filesDiv.appendChild(textarea);
+                    }
+                });
+
+                var closeButton = document.createElement('div');
+                closeButton.textContent = 'Close';
+                closeButton.classList.add('close-button');
+                closeButton.onclick = function() {
+                    var textarea = filesDiv.querySelector('textarea');
+                    if (textarea) {
+                        filesDiv.removeChild(textarea);
+                    }
+                };
+                filesDiv.appendChild(closeButton);
+            }
+
+            document.getElementById('removeFiles').addEventListener('change', previewFiles, false);
+            document.getElementById('removeFile').addEventListener('change', previewFiles, false);
+            document.getElementById('replaceFiles').addEventListener('change', previewFiles, false);
+            document.getElementById('replaceFile').addEventListener('change', previewFiles, false);
+        });
+    </script>
+</head>
+<body>
+<div class="title"><h2>Remove Or Replace Text From File</h2></div>
+
+<div class="form-container">
+    <div class="form-section">
+        <form id="removeTextForm" method="post" action="/removeText" enctype="multipart/form-data">
+            <h3>Delete Fields</h3>
+            <!-- Delete fields form code here -->
+            <div class="open-file-label">Open Folder</div>
+            <input type="file" id="removeFiles" name="files" webkitdirectory directory multiple>
+            <div class="open-file-label">Open File</div>
+            <input type="file" id="removeFile" name="file">
+            <input type="text" id="textToRemove" name="textToRemove" placeholder="Texts to Remove (separate by commas)" required><br>
+            <select id="removeFileType" name="fileType" required>
+                <option value="txt">txt</option>
+                <option value="srt">srt</option>
+                <option value="md">md</option>
+                <option value="html">html</option>
+                <option value="pdf">pdf</option>
+            </select>
+            <input type="submit" class="button submit-button" value="Submit">
+            <div id="removeFilesPreview"></div>
+            <div id="removeFilePreview"></div>
+        </form>
+    </div>
+    <div class="divider"></div>
+    <div class="form-section">
+        <form id="replaceTextForm" method="post" action="/replaceText" enctype="multipart/form-data">
+            <h3>Replace Fields</h3>
+            <!-- Replace fields form code here -->
+            <div class="open-file-label">Open Folder</div>
+            <input type="file" id="replaceFiles" name="files" webkitdirectory directory multiple>
+            <div class="open-file-label">Open File</div>
+            <input type="file" id="replaceFile" name="file">
+            <input type="text" id="textToReplace" name="textToReplace" placeholder="Texts to Replace (separate by commas)" required><br>
+            <input type="text" id="newText" name="newText" placeholder="New Texts (separate by commas)" required><br>
+            <select id="replaceFileType" name="fileType" required>
+                <option value="txt">txt</option>
+                <option value="srt">srt</option>
+                <option value="md">md</option>
+                <option value="html">html</option>
+                <option value="pdf">pdf</option>
+            </select>
+            <input type="submit" class="button submit-button" value="Submit">
+            <div id="replaceFilesPreview"></div>
+            <div id="replaceFilePreview"></div>
+        </form>
+    </div>
+</div>
+<a href="index.html" class="home-button">Home</a>
+</body>
+</html>

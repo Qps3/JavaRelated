@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/aichat.css">
+</head>
+
+
+<body>
+<!-- 聊天记录容器 -->
+<div class="container" id="message-container"></div>
+
+<!-- 用户输入框 -->
+<div class="chatbox">
+    <input type="text" id="user-input" class="user-input" placeholder="请输入您的消息，按回车键发送">
+    <div class="download-button">
+        <button onclick="downloadChat()">D</button>
+    </div>
+    <!-- 添加同步按钮 -->
+    <!-- 将同步按钮改为保存全部聊天记录到Redis按钮 -->
+    <div class="sync-button" onclick="saveAllChatToRedis()">保存全部聊天记录到Redis</div>
+</div>
+
+<!-- 在body的末尾包含 /js/aichat.js，确保它可以访问DOM元素 -->
+<script src="js/aichat.js"></script>
+</body>
+
+
+</html>

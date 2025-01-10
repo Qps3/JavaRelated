@@ -1,0 +1,127 @@
+/* CSS样式部分 */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    margin-top: 30px;  /* 调整这里 */
+    font-size: 2.5em;
+    color: #333;
+}
+
+form {
+    max-width: 600px;
+    margin: 30px auto;  /* 调整这里 */
+    padding: 20px;  /* 调整这里 */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;  /* 调整这里 */
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    font-size: 18px;
+    padding: 10px;  /* 调整这里 */
+    margin-bottom: 20px;  /* 调整这里 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="text"] {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;  /* 调整这里 */
+    margin-bottom: 20px;  /* 调整这里 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button {
+    font-size: 20px;
+    padding: 10px 20px;  /* 调整这里 */
+    margin: 5px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 12px 28px 0 rgba(0,0,0,0.24), 0 2px 4px 0 rgba(0,0,0,0.12);
+}
+
+/* 添加这个样式 */
+#buttonContainer {
+    position: fixed;
+    top: 10px;
+    right: 0px; /* 改成0，按钮将会靠近屏幕的右边 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.button {
+    display: block;
+    margin-bottom: 10px;
+    /* ...其他样式... */
+}
+
+/* 添加这个样式 */
+.homepage-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* 添加这个样式 */
+.openapp-button {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+}
+
+
+/* 添加这个样式 */
+#submitContainer {
+    display: flex;
+    justify-content: center;
+    position: relative; /* 添加position属性 */
+    top: -30px; /* 调整top属性来移动按钮位置，可根据需要自行调整数值 */
+}
+
+/* 添加这个样式 */
+.submit-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 600px; /* 添加这个属性，设置按钮宽度 */
+}

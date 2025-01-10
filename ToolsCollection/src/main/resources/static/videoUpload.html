@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Video</title>
+  <link rel="stylesheet" href="css/videoUpload.css">
+</head>
+<body>
+<div class="container">
+  <h1>Video Upload Page</h1>
+  <a href="/" class="home-button">Back to Home</a>
+  <form method="POST" action="/upload" enctype="multipart/form-data">
+    <input type="file" id="file" name="file">
+    <button type="submit">Upload</button>
+  </form>
+  <div id="drop-zone">
+    Drop files here
+  </div>
+</div>
+<script src="upload.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Website</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+</head>
+<body>
+<video id="video-background" autoplay loop muted>
+    <source src="/video/background.mp4" type="video/mp4">
+    <source src="video/background.webm" type="video/webm">
+
+    Your browser does not support the video tag.
+</video>
+
+<div class="button-container">
+    <button class="button" onclick="goToTranslatePage()">Translate</button>
+    <button class="button" onclick="goToTextRemovePage()">Text Remove</button>
+    <button class="button" onclick="goToVideoUploadPage()">Upload Video</button> <!-- 新增的按钮 -->
+</div>
+
+<script>
+    function goToTranslatePage() {
+        window.location.href = "translate.html";
+    }
+
+    function goToTextRemovePage() {
+        window.location.href = "removeText.html";
+    }
+
+    function goToVideoUploadPage() { // 新增的跳转函数
+        window.location.href = "videoUpload.html";
+    }
+</script>
+</body>
+</html>
